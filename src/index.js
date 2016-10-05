@@ -9,8 +9,8 @@ const tar = require('tar')
 
 module.exports = untarToMemory
 
-function untarToMemory (file) {
-  const mfs = new MemoryFs()
+function untarToMemory (file, mfs) {
+  mfs = mfs || new MemoryFs()
 
   return new Promise((resolve, reject) => {
     createReadStream(file)
