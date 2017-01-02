@@ -10,10 +10,11 @@ const tar = require('tar')
 module.exports = untarToMemory
 
 function untarToMemory (file, mfs) {
+  const tarball = typeof file === 'string'
+    ? createReadStream(file)
+    : file
+
   mfs = mfs || new MemoryFs()
-  const tarball = 'string' === typeof file?
-        createReadStream(file) :
-        file
 
   return new Promise((resolve, reject) => {
     tarball
