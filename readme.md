@@ -19,7 +19,7 @@ $ npm install untar-memory
 ```js
 const untarToMemory = require('untar-memory')
 
-untarToMemory('./tar-file.tgz')
+untarToMemory('./tar-file.tgz') // or pass in an existing read stream
   .then((memoryFileSystem) => {
     memoryFileSystem.readFileSync('/package/readme.md', 'utf8')
     // -> # title ...
