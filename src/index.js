@@ -11,9 +11,12 @@ module.exports = untarToMemory
 
 function untarToMemory (file, mfs) {
   mfs = mfs || new MemoryFs()
+  const tarball = 'string' === typeof file?
+        createReadStream(file) :
+        file
 
   return new Promise((resolve, reject) => {
-    createReadStream(file)
+    tarball
       .pipe(gunzip())
       .pipe(tar.Parse())
       .on('entry', (entry) => {
